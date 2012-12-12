@@ -1,0 +1,22 @@
+service kvs {
+  #@cht(2) #@update #@all_and
+  bool put(0: string name, 1: string key, 2: string value)
+
+  #@cht(2) #@analysis #@pass
+  string get(0: string name, 1: string key)
+
+  #@cht(2) #@update #@all_and
+  bool del(0: string name, 1: string key)
+
+  #@broadcast #@update #@all_and
+  bool clear(0: string name)
+
+  #@broadcast #@analysis #@merge
+  map<string, map<string, string> > get_status(0: string name)
+
+  #@broadcast #@update #@all_and
+  bool save(0: string name, 1: string id)
+
+  #@broadcast #@update #@all_and
+  bool load(0: string name, 1: string id)
+}
