@@ -62,4 +62,8 @@ void kvs_serv::get_status(status_t& status) const
     status.insert(std::make_pair("size", ss.str()));
 }
 
+bool kvs_serv::set_config(const std::string& config) {
+  return true;
+}
+
 }} // namespace jubatus::server
