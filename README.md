@@ -33,4 +33,5 @@ It actually does the following:
 ```
 $ jenerator kvs.idl -o . -t
 $ mpidl cpp kvs.idl -o . -p -n jubatus
+$ mpidlconv kvs.idl -o .
 ```
