@@ -9,6 +9,7 @@
 #include "kvs_types.hpp"
 #include <pficommon/network/mprpc.h>
 #include <pficommon/lang/bind.h>
+#include <jubatus/common/mprpc/rpc_server.hpp>
 
 
 namespace jubatus {

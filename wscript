@@ -10,7 +10,20 @@ def options(opt):
 def generate(ctx):
   call(['jenerator', name + '.idl', '-o', '.', '-t'])
   call(['mpidl', 'cpp', name + '.idl', '-o', '.', '-p', '-n', 'jubatus'])
-  call(['mpidlconv', name + '.idl', '-o', '.'])
+  call(['mpidlconv', '-i', '.', '-s', name])
+
+def clean_generated(ctx):
+  generated = [
+    name + '_client.hpp',
+    name + '_types.hpp',
+    name + '_impl.cpp',
+    name + '_keeper.cpp',
+    name + '_server.hpp',
+    name + '_serv.tmpl.cpp',
+    name + '_serv.tmpl.hpp',
+  ]
+  for f in generated:
+    ctx.path.make_node(f).delete()
 
 def configure(conf):
   conf.env.CXXFLAGS += ['-O2', '-Wall', '-g', '-pipe']
