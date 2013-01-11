@@ -31,6 +31,8 @@ public:
 
   void get_status(status_t& status) const; //analysis broadcast
 
+  bool set_config(const std::string& config);
+
 private:
   pfi::lang::scoped_ptr<framework::mixer::mixer> mixer_;
   pfi::lang::shared_ptr<framework::mixable_holder> mixable_holder_;

@@ -7,7 +7,7 @@
 
 
 #include "kvs_types.hpp"
-#include <pficommon/network/mprpc.h>
+#include <jubatus/common/mprpc/rpc_server.hpp>
 #include <pficommon/lang/bind.h>
 
 
@@ -16,7 +16,7 @@ namespace jubatus {
 namespace server {
 
 template <class Impl>
-class kvs : public pfi::network::mprpc::rpc_server {
+class kvs : public jubatus::common::mprpc::rpc_server {
 public:
   kvs(double timeout_sec): rpc_server(timeout_sec) {
 

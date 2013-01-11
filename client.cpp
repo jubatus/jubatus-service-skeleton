@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
         cout << c.get(NAME, "banana") << endl;
         cout << c.get(NAME, "strawberry") << endl;
         cout << c.get(NAME, "unknown") << endl;
-    } catch (pfi::network::mprpc::rpc_error e) {
+    } catch (const runtime_error& e) {
         cout << "Exception: " << e.what() << endl;
     }
 
