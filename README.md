@@ -15,7 +15,7 @@ Run
 ---
 
 ```
-$ build/kvs &
+$ build/kvs --configpath kvs_config.json &
 $ build/client
 ```
 

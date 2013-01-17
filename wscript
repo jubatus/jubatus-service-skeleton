@@ -35,6 +35,8 @@ def configure(conf):
   conf.check_cxx(lib = 'pficommon', mandatory = True)
   conf.check_cxx(lib = 'pficommon_system', mandatory = True)
   conf.check_cxx(lib = 'pficommon_concurrent', mandatory = True)
+  conf.check_cxx(lib = 'pficommon_lang', mandatory = True)
+  conf.check_cxx(lib = 'pficommon_text', mandatory = True)
 
   conf.check_cxx(lib = 'jubatus_mpio', mandatory = True)
   conf.check_cxx(lib = 'jubatus_msgpack-rpc', mandatory = True)
@@ -49,7 +51,7 @@ def build(bld):
     source = [name+'_serv.cpp', name+'_impl.cpp'],
     target = name,
     use = ['JUBATUS_FRAMEWORK', 'JUBACOMMON', 'JUBACOMMON_MPRPC', 'JUBAMIXER',
-           'PFICOMMON', 'PFICOMMON_SYSTEM', 'PFICOMMON_CONCURRENT',
+           'PFICOMMON', 'PFICOMMON_SYSTEM', 'PFICOMMON_CONCURRENT', 'PFICOMMON_LANG', 'PFICOMMON_TEXT',
            'JUBATUS_MPIO', 'JUBATUS_MSGPACK-RPC',
            'MSGPACK', 'GLOG']
     )
