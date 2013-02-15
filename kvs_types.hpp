@@ -1,23 +1,20 @@
-
 // This file is auto-generated from kvs.idl
 // *** DO NOT EDIT ***
 
 #ifndef KVS_TYPES_HPP_
 #define KVS_TYPES_HPP_
 
+#include <stdint.h>
 
-#include <vector>
 #include <map>
 #include <string>
-#include <stdexcept>
-#include <stdint.h>
-#include <msgpack.hpp>
+#include <vector>
+#include <utility>
 
+#include <msgpack.hpp>
 
 namespace jubatus {
 
-} // namespace jubatus
+}  // namespace jubatus
 
-
-
-#endif // KVS_TYPES_HPP_
+#endif  // KVS_TYPES_HPP_

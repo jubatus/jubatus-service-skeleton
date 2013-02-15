@@ -8,9 +8,7 @@ def options(opt):
   opt.load('compiler_cxx')
 
 def generate(ctx):
-  call(['jenerator', name + '.idl', '-o', '.', '-t'])
-  call(['mpidl', 'cpp', name + '.idl', '-o', '.', '-p', '-n', 'jubatus'])
-  call(['mpidlconv', '-i', '.', '-s', name])
+  call(['jenerator', '-l', 'cpp', '-o', '.', '-n', 'jubatus', '-t', name + '.idl'])
 
 def clean_generated(ctx):
   generated = [
