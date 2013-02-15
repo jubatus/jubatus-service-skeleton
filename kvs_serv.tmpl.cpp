@@ -1,49 +1,42 @@
-// this is automatically generated template header please implement and edit.
+// This file is auto-generated from kvs.idl
+// *** DO NOT EDIT ***
 
 #include "kvs_serv.hpp"
 
-using namespace jubatus::framework;
+namespace jubatus {
+namespace server {
 
-namespace jubatus { namespace server { // do not change
-kvs_serv::kvs_serv(const server_argv& a)
-  :framework::jubatus_serv(a)
-{
-  //somemixable* mi = new somemixable;
-  //somemixable_.set_model(mi);
-  //register_mixable(mi);
+kvs_serv::kvs_serv(const jubatus::framework::server_argv& a)
+    : jubatus::framework::jubatus_serv(a) {
+  // somemixable* mi = new somemixable;
+  // somemixable_.set_model(mi);
+  // register_mixable(mi);
 }
 
-kvs_serv::~kvs_serv()
-{}
+kvs_serv::~kvs_serv() {
+}
 
+bool kvs_serv::put(const std::string& key, const std::string& value) {
+}
 
-//update, cht(2)
-bool kvs_serv::put(const std::string& key, const std::string& value)
-{}
+std::string kvs_serv::get(const std::string& key) const {
+}
 
-//analysis, cht(2)
-std::string kvs_serv::get(const std::string& key) const
-{}
+bool kvs_serv::del(const std::string& key) {
+}
 
-//update, cht(2)
-bool kvs_serv::del(const std::string& key)
-{}
+bool kvs_serv::clear() {
+}
 
-//update, broadcast
-bool kvs_serv::clear()
-{}
+std::map<std::string, std::map<std::string, std::string> > kvs_serv::get_status(
+    ) const {
+}
 
-//analysis, broadcast
-std::map<std::string,std::map<std::string,std::string > > kvs_serv::get_status() const
-{}
+bool kvs_serv::save(const std::string& id) {
+}
 
-//update, broadcast
-bool kvs_serv::save(const std::string& id)
-{}
+bool kvs_serv::load(const std::string& id) {
+}
 
-//update, broadcast
-bool kvs_serv::load(const std::string& id)
-{}
-
-void kvs_serv::after_load(){}
-}} // namespace jubatus::server
+}  // namespace server
+}  // namespace jubatus
