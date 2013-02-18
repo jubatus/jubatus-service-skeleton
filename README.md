@@ -22,7 +22,7 @@ $ build/client
 Generating Server/Keeper/Client from IDL
 ----------------------------------------
 
-For your convenience, `generate` target is already defined in `wscript`.
+For your convenience, `generate` target is already defined in `wscript` (note that `jenerator` must be in `PATH`).
 
 ```
 $ ./waf generate
@@ -31,7 +31,5 @@ $ ./waf generate
 It actually does the following:
 
 ```
-$ jenerator kvs.idl -o . -t
-$ mpidl cpp kvs.idl -o . -p -n jubatus
-$ mpidlconv -i . -s kvs
+$ jenerator -l server -o . -n jubatus -t kvs.idl
 ```
