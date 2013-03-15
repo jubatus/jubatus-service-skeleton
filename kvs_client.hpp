@@ -20,41 +20,45 @@ class kvs {
       : c_(host, port) {
     c_.set_timeout(timeout_sec);
   }
-  
+
   bool put(std::string name, std::string key, std::string value) {
     msgpack::rpc::future f = c_.call("put", name, key, value);
     return f.get<bool>();
   }
-  
+
   std::string get(std::string name, std::string key) {
     msgpack::rpc::future f = c_.call("get", name, key);
     return f.get<std::string>();
   }
-  
+
   bool del(std::string name, std::string key) {
     msgpack::rpc::future f = c_.call("del", name, key);
     return f.get<bool>();
   }
-  
+
   bool clear(std::string name) {
     msgpack::rpc::future f = c_.call("clear", name);
     return f.get<bool>();
   }
-  
+
   std::map<std::string, std::map<std::string, std::string> > get_status(
       std::string name) {
     msgpack::rpc::future f = c_.call("get_status", name);
     return f.get<std::map<std::string, std::map<std::string, std::string> > >();
   }
-  
+
   bool save(std::string name, std::string id) {
     msgpack::rpc::future f = c_.call("save", name, id);
     return f.get<bool>();
   }
-  
+
   bool load(std::string name, std::string id) {
     msgpack::rpc::future f = c_.call("load", name, id);
     return f.get<bool>();
+  }
+
+  msgpack::rpc::client& get_client() {
+    return c_;
   }
 
  private:
