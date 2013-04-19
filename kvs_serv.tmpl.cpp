@@ -17,7 +17,7 @@ kvs_serv::kvs_serv(
 kvs_serv::~kvs_serv() {
 }
 
-virtual mixer::mixer* kvs_serv::get_mixer() const {
+framework::mixer::mixer* kvs_serv::get_mixer() const {
 }
 
 pfi::lang::shared_ptr<framework::mixable_holder> kvs_serv::get_mixable_holder(
