@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <pficommon/lang/shared_ptr.h>
 
 #include <jubatus/server/framework.hpp>
 #include "kvs_server.hpp"

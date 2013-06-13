@@ -1,6 +1,7 @@
 // This file is auto-generated from kvs.idl
 
 #include "kvs_serv.hpp"
+#include <jubatus/server/framework/mixer/mixer_factory.hpp>
 #include <glog/logging.h>
 
 namespace jubatus {
@@ -26,8 +27,12 @@ struct kvs_serv_config {
 
 kvs_serv::kvs_serv(
   const jubatus::server::framework::server_argv& a,
-  const pfi::lang::shared_ptr<common::lock_service>& zk)
-  : server_base(a) {
+  const pfi::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
+    : jubatus::server::framework::server_base(a) {
+  // somemixable* mi = new somemixable;
+  // somemixable_.set_model(mi);
+  // get_mixable_holder()->register_mixable(mi);
+
   mixer_.reset(server::framework::mixer::create_mixer(a, zk));
 
   mixable_holder_.reset(new core::framework::mixable_holder());
@@ -39,12 +44,11 @@ kvs_serv::kvs_serv(
 kvs_serv::~kvs_serv() {
 }
 
-framework::mixer::mixer* kvs_serv::get_mixer() const {
+jubatus::server::framework::mixer::mixer* kvs_serv::get_mixer() const {
   return mixer_.get();
 }
 
-pfi::lang::shared_ptr<core::framework::mixable_holder> kvs_serv::get_mixable_holder(
-    ) const {
+pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
   return mixable_holder_;
 }
 
@@ -52,6 +56,17 @@ void kvs_serv::get_status(status_t& status) const {
   std::stringstream ss;
   ss << data_.size();
   status.insert(std::make_pair("size", ss.str()));
+}
+
+void kvs_serv::set_config(const std::string& config) {
+  core::common::jsonconfig::config config_root(
+      pfi::lang::lexical_cast<pfi::text::json::json>(config));
+  kvs_serv_config conf =
+    core::common::jsonconfig::config_cast_check<kvs_serv_config>(config_root);
+
+  // You can use configuration values here
+  LOG(INFO) << "param1 = " << conf.param1;
+  LOG(INFO) << "param2 = " << conf.param2;
 }
 
 bool kvs_serv::put(const std::string& key, const std::string& value) {
@@ -77,19 +92,6 @@ bool kvs_serv::del(const std::string& key) {
 
 bool kvs_serv::clear() {
   data_.clear();
-  return true;
-}
-
-bool kvs_serv::set_config(const std::string& config) {
-  core::common::jsonconfig::config config_root(
-      pfi::lang::lexical_cast<pfi::text::json::json>(config));
-  kvs_serv_config conf =
-    core::common::jsonconfig::config_cast_check<kvs_serv_config>(config_root);
-
-  // You can use configuration values here
-  LOG(INFO) << "param1 = " << conf.param1;
-  LOG(INFO) << "param2 = " << conf.param2;
-
   return true;
 }
 

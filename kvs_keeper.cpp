@@ -22,7 +22,8 @@ int run_keeper(int argc, char* argv[]) {
     k.register_async_cht<2, bool, std::string>("put", pfi::lang::function<bool(
         bool, bool)>(&jubatus::server::framework::all_and));
     k.register_async_cht<2, std::string>("get", pfi::lang::function<std::string(
-        std::string, std::string)>(&jubatus::server::framework::pass<std::string>));
+        std::string, std::string)>(
+        &jubatus::server::framework::pass<std::string>));
     k.register_async_cht<2, bool>("del", pfi::lang::function<bool(bool, bool)>(
         &jubatus::server::framework::all_and));
     k.register_async_broadcast<bool>("clear", pfi::lang::function<bool(bool,
@@ -35,9 +36,11 @@ int run_keeper(int argc, char* argv[]) {
          std::string> >)>(&jubatus::server::framework::merge<std::string,
          std::map<std::string, std::string> >));
     k.register_async_broadcast<bool, std::string>("save",
-         pfi::lang::function<bool(bool, bool)>(&jubatus::server::framework::all_and));
+         pfi::lang::function<bool(bool, bool)>(
+        &jubatus::server::framework::all_and));
     k.register_async_broadcast<bool, std::string>("load",
-         pfi::lang::function<bool(bool, bool)>(&jubatus::server::framework::all_and));
+         pfi::lang::function<bool(bool, bool)>(
+        &jubatus::server::framework::all_and));
     return k.run();
   } catch (const jubatus::core::common::exception::jubatus_exception& e) {
     LOG(FATAL) << e.diagnostic_information(true);
