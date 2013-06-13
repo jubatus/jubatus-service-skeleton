@@ -10,14 +10,14 @@
 #include <utility>
 #include <pficommon/lang/bind.h>
 
-#include <jubatus/common/mprpc/rpc_server.hpp>
+#include <jubatus/server/common/mprpc/rpc_server.hpp>
 #include "kvs_types.hpp"
 
 namespace jubatus {
 namespace server {
 
 template <class Impl>
-class kvs : public jubatus::common::mprpc::rpc_server {
+class kvs : public jubatus::server::common::mprpc::rpc_server {
  public:
   explicit kvs(double timeout_sec) : rpc_server(timeout_sec) {
     Impl* impl = static_cast<Impl*>(this);

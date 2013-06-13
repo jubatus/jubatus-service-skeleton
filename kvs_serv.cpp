@@ -25,12 +25,12 @@ struct kvs_serv_config {
 }
 
 kvs_serv::kvs_serv(
-  const jubatus::framework::server_argv& a,
-  const common::cshared_ptr<common::lock_service>& zk)
-    : jubatus::framework::server_base(a) {
-  mixer_.reset(framework::mixer::create_mixer(a, zk));
+  const jubatus::server::framework::server_argv& a,
+  const pfi::lang::shared_ptr<common::lock_service>& zk)
+  : server_base(a) {
+  mixer_.reset(server::framework::mixer::create_mixer(a, zk));
 
-  mixable_holder_.reset(new framework::mixable_holder());
+  mixable_holder_.reset(new core::framework::mixable_holder());
   mixer_->set_mixable_holder(mixable_holder_);
 
   data_ = kvs_map_t();
@@ -43,7 +43,7 @@ framework::mixer::mixer* kvs_serv::get_mixer() const {
   return mixer_.get();
 }
 
-pfi::lang::shared_ptr<framework::mixable_holder> kvs_serv::get_mixable_holder(
+pfi::lang::shared_ptr<core::framework::mixable_holder> kvs_serv::get_mixable_holder(
     ) const {
   return mixable_holder_;
 }
@@ -81,10 +81,10 @@ bool kvs_serv::clear() {
 }
 
 bool kvs_serv::set_config(const std::string& config) {
-  jsonconfig::config config_root(
+  core::common::jsonconfig::config config_root(
       pfi::lang::lexical_cast<pfi::text::json::json>(config));
   kvs_serv_config conf =
-      jsonconfig::config_cast_check<kvs_serv_config>(config_root);
+    core::common::jsonconfig::config_cast_check<kvs_serv_config>(config_root);
 
   // You can use configuration values here
   LOG(INFO) << "param1 = " << conf.param1;
