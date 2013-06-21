@@ -1,12 +1,12 @@
-Skelton of Service in Jubatus Framework
-=======================================
+Skeleton of Service in Jubatus Framework
+=========================================
 
 This is an implementation of a simple key-value store that uses Jubatus framework.
 
 Requirements
 ------------
 
-+ Jubatus 0.4.2+ (development headers required)
++ Jubatus 0.4.4+ (development headers required)
 
 Build
 -----
