@@ -28,19 +28,6 @@ int run_keeper(int argc, char* argv[]) {
         &jubatus::server::framework::all_and));
     k.register_async_broadcast<bool>("clear", pfi::lang::function<bool(bool,
          bool)>(&jubatus::server::framework::all_and));
-    k.register_async_broadcast<std::map<std::string, std::map<std::string,
-         std::string> > >("get_status",
-         pfi::lang::function<std::map<std::string, std::map<std::string,
-         std::string> >(std::map<std::string, std::map<std::string,
-         std::string> >, std::map<std::string, std::map<std::string,
-         std::string> >)>(&jubatus::server::framework::merge<std::string,
-         std::map<std::string, std::string> >));
-    k.register_async_broadcast<bool, std::string>("save",
-         pfi::lang::function<bool(bool, bool)>(
-        &jubatus::server::framework::all_and));
-    k.register_async_broadcast<bool, std::string>("load",
-         pfi::lang::function<bool(bool, bool)>(
-        &jubatus::server::framework::all_and));
     return k.run();
   } catch (const jubatus::core::common::exception::jubatus_exception& e) {
     LOG(FATAL) << e.diagnostic_information(true);

@@ -20,6 +20,7 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
   virtual jubatus::server::framework::mixer::mixer* get_mixer() const;
   pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
   void get_status(status_t& status) const;
+  std::string get_config() const;
   void set_config(const std::string& config);
 
   bool put(const std::string& key, const std::string& value);
@@ -34,6 +35,7 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
   // add user data here like: pfi::lang::shared_ptr<some_type> some_;
   typedef std::map<std::string,std::string> kvs_map_t;
   kvs_map_t data_;
+  std::string config_;
 };
 
 }  // namespace server

@@ -58,11 +58,16 @@ void kvs_serv::get_status(status_t& status) const {
   status.insert(std::make_pair("size", ss.str()));
 }
 
+std::string kvs_serv::get_config() const {
+  return config_;
+}
+
 void kvs_serv::set_config(const std::string& config) {
   core::common::jsonconfig::config config_root(
       pfi::lang::lexical_cast<pfi::text::json::json>(config));
   kvs_serv_config conf =
     core::common::jsonconfig::config_cast_check<kvs_serv_config>(config_root);
+  config_ = config;
 
   // You can use configuration values here
   LOG(INFO) << "param1 = " << conf.param1;
