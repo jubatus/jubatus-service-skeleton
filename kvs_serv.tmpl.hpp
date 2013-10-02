@@ -19,6 +19,7 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
 
   virtual jubatus::server::framework::mixer::mixer* get_mixer() const;
   pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
+  std::string get_config() const;
   void get_status(status_t& status) const;
   void set_config(const std::string& config);
 

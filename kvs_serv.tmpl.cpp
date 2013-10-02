@@ -23,6 +23,9 @@ jubatus::server::framework::mixer::mixer* kvs_serv::get_mixer() const {
 pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
 }
 
+std::string kvs_serv::get_config() const {
+}
+
 void kvs_serv::get_status(status_t& status) const {
 }
 
