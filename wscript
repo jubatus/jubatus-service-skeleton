@@ -9,14 +9,14 @@ def options(opt):
 
 def generate(ctx):
   call(['jenerator', '-l', 'server', '-o', '.', '-n', 'jubatus', '-t', name + '.idl'])
+  call(['jenerator', '-l', 'cpp', '-o', '.', '-n', 'jubatus', '-t', name + '.idl'])
 
 def clean_generated(ctx):
   generated = [
     name + '_client.hpp',
     name + '_types.hpp',
     name + '_impl.cpp',
-    name + '_keeper.cpp',
-    name + '_server.hpp',
+    name + '_proxy.cpp',
     name + '_serv.tmpl.cpp',
     name + '_serv.tmpl.hpp',
   ]
@@ -38,8 +38,8 @@ def build(bld):
     )
 
   bld.program(
-    source = name+'_keeper.cpp',
-    target = name+'_keeper',
+    source = name+'_proxy.cpp',
+    target = name+'_proxy',
     use = ['JUBATUS'],
     )
 

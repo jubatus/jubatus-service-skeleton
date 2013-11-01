@@ -8,53 +8,77 @@
 #include <pficommon/lang/shared_ptr.h>
 
 #include <jubatus/server/framework.hpp>
-#include "kvs_server.hpp"
 #include "kvs_serv.hpp"
 
 namespace jubatus {
 namespace server {
 
-class kvs_impl_ : public kvs<kvs_impl_> {
+class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
  public:
-  explicit kvs_impl_(const jubatus::server::framework::server_argv& a):
-    kvs<kvs_impl_>(a.timeout),
+  explicit kvs_impl(const jubatus::server::framework::server_argv& a):
+    rpc_server(a.timeout),
     p_(new jubatus::server::framework::server_helper<kvs_serv>(a, true)) {
+
+    rpc_server::add<bool(std::string, std::string, std::string)>("put",
+        pfi::lang::bind(&kvs_impl::put, this, pfi::lang::_2, pfi::lang::_3));
+    rpc_server::add<std::string(std::string, std::string)>("get",
+        pfi::lang::bind(&kvs_impl::get, this, pfi::lang::_2));
+    rpc_server::add<bool(std::string, std::string)>("del", pfi::lang::bind(
+        &kvs_impl::del, this, pfi::lang::_2));
+    rpc_server::add<bool(std::string)>("clear", pfi::lang::bind(
+        &kvs_impl::clear, this));
+
+    rpc_server::add<std::string(std::string)>("get_config", pfi::lang::bind(
+        &kvs_impl::get_config, this));
+    rpc_server::add<bool(std::string, std::string)>("save", pfi::lang::bind(
+        &kvs_impl::save, this, pfi::lang::_2));
+    rpc_server::add<bool(std::string, std::string)>("load", pfi::lang::bind(
+        &kvs_impl::load, this, pfi::lang::_2));
+    rpc_server::add<std::map<std::string, std::map<std::string, std::string> >(
+        std::string)>("get_status", pfi::lang::bind(&kvs_impl::get_status,
+        this));
   }
-  bool put(std::string name, std::string key, std::string value) {
+
+  bool put(const std::string& key, const std::string& value) {
     JWLOCK_(p_);
     return get_p()->put(key, value);
   }
 
-  std::string get(std::string name, std::string key) {
+  std::string get(const std::string& key) {
     JRLOCK_(p_);
     return get_p()->get(key);
   }
 
-  bool del(std::string name, std::string key) {
+  bool del(const std::string& key) {
     JWLOCK_(p_);
     return get_p()->del(key);
   }
 
-  bool clear(std::string name) {
+  bool clear() {
     JWLOCK_(p_);
     return get_p()->clear();
   }
 
-  std::map<std::string, std::map<std::string, std::string> > get_status(
-      std::string name) {
+  std::string get_config() {
     JRLOCK_(p_);
-    return p_->get_status();
+    return get_p()->get_config();
   }
 
-  bool save(std::string name, std::string id) {
+  bool save(const std::string& id) {
     JWLOCK_(p_);
     return get_p()->save(id);
   }
 
-  bool load(std::string name, std::string id) {
+  bool load(const std::string& id) {
     JWLOCK_(p_);
     return get_p()->load(id);
   }
+
+  std::map<std::string, std::map<std::string, std::string> > get_status() {
+    JRLOCK_(p_);
+    return p_->get_status();
+  }
+
   int run() { return p_->start(*this); }
   pfi::lang::shared_ptr<kvs_serv> get_p() { return p_->server(); }
 
@@ -67,6 +91,6 @@ class kvs_impl_ : public kvs<kvs_impl_> {
 
 int main(int argc, char* argv[]) {
   return
-    jubatus::server::framework::run_server<jubatus::server::kvs_impl_>
+    jubatus::server::framework::run_server<jubatus::server::kvs_impl>
       (argc, argv, "kvs");
 }
