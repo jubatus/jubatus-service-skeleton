@@ -1,11 +1,11 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-375-g07d06b7/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-412-g37c57d9/develop
 // *** DO NOT EDIT ***
 
 #include <map>
 #include <string>
 #include <vector>
 #include <utility>
-#include <pficommon/lang/shared_ptr.h>
+#include "jubatus/util/lang/shared_ptr.h"
 
 #include <jubatus/server/framework.hpp>
 #include "kvs_serv.hpp"
@@ -20,23 +20,28 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
     p_(new jubatus::server::framework::server_helper<kvs_serv>(a, true)) {
 
     rpc_server::add<bool(std::string, std::string, std::string)>("put",
-        pfi::lang::bind(&kvs_impl::put, this, pfi::lang::_2, pfi::lang::_3));
+        jubatus::util::lang::bind(&kvs_impl::put, this, jubatus::util::lang::_2,
+        jubatus::util::lang::_3));
     rpc_server::add<std::string(std::string, std::string)>("get",
-        pfi::lang::bind(&kvs_impl::get, this, pfi::lang::_2));
-    rpc_server::add<bool(std::string, std::string)>("del", pfi::lang::bind(
-        &kvs_impl::del, this, pfi::lang::_2));
-    rpc_server::add<bool(std::string)>("clear", pfi::lang::bind(
+        jubatus::util::lang::bind(&kvs_impl::get, this,
+        jubatus::util::lang::_2));
+    rpc_server::add<bool(std::string, std::string)>("del",
+        jubatus::util::lang::bind(&kvs_impl::del, this,
+        jubatus::util::lang::_2));
+    rpc_server::add<bool(std::string)>("clear", jubatus::util::lang::bind(
         &kvs_impl::clear, this));
 
-    rpc_server::add<std::string(std::string)>("get_config", pfi::lang::bind(
-        &kvs_impl::get_config, this));
-    rpc_server::add<bool(std::string, std::string)>("save", pfi::lang::bind(
-        &kvs_impl::save, this, pfi::lang::_2));
-    rpc_server::add<bool(std::string, std::string)>("load", pfi::lang::bind(
-        &kvs_impl::load, this, pfi::lang::_2));
+    rpc_server::add<std::string(std::string)>("get_config",
+        jubatus::util::lang::bind(&kvs_impl::get_config, this));
+    rpc_server::add<bool(std::string, std::string)>("save",
+        jubatus::util::lang::bind(&kvs_impl::save, this,
+        jubatus::util::lang::_2));
+    rpc_server::add<bool(std::string, std::string)>("load",
+        jubatus::util::lang::bind(&kvs_impl::load, this,
+        jubatus::util::lang::_2));
     rpc_server::add<std::map<std::string, std::map<std::string, std::string> >(
-        std::string)>("get_status", pfi::lang::bind(&kvs_impl::get_status,
-        this));
+        std::string)>("get_status", jubatus::util::lang::bind(
+        &kvs_impl::get_status, this));
   }
 
   bool put(const std::string& key, const std::string& value) {
@@ -80,10 +85,10 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
   }
 
   int run() { return p_->start(*this); }
-  pfi::lang::shared_ptr<kvs_serv> get_p() { return p_->server(); }
+  jubatus::util::lang::shared_ptr<kvs_serv> get_p() { return p_->server(); }
 
  private:
-  pfi::lang::shared_ptr<jubatus::server::framework::server_helper<kvs_serv> > p_;
+  jubatus::util::lang::shared_ptr<jubatus::server::framework::server_helper<kvs_serv> > p_;
 };
 
 }  // namespace server

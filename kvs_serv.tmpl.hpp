@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-375-g07d06b7/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-412-g37c57d9/develop
 
 #ifndef KVS_SERV_TMPL_HPP_
 #define KVS_SERV_TMPL_HPP_
@@ -14,11 +14,11 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
  public:
   kvs_serv(
     const jubatus::server::framework::server_argv& a,
-    const pfi::lang::shared_ptr<jubatus::server::common::lock_service>& zk);  // do not change
+    const jubatus::util::lang::shared_ptr<jubatus::server::common::lock_service>& zk);  // do not change
   virtual ~kvs_serv();  // do not change
 
   virtual jubatus::server::framework::mixer::mixer* get_mixer() const;
-  pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
+  jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
   std::string get_config() const;
   void get_status(status_t& status) const;
   void set_config(const std::string& config);
@@ -29,7 +29,7 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
   bool clear();
 
  private:
-  // add user data here like: pfi::lang::shared_ptr<some_type> some_;
+  // add user data here like: jubatus::util::lang::shared_ptr<some_type> some_;
 };
 
 }  // namespace server

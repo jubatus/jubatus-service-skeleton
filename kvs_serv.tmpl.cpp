@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-375-g07d06b7/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-412-g37c57d9/develop
 
 #include "kvs_serv.hpp"
 
@@ -7,7 +7,7 @@ namespace server {
 
 kvs_serv::kvs_serv(
   const jubatus::server::framework::server_argv& a,
-  const pfi::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
+  const jubatus::util::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
     : jubatus::server::framework::server_base(a) {
   // somemixable* mi = new somemixable;
   // somemixable_.set_model(mi);
@@ -20,7 +20,7 @@ kvs_serv::~kvs_serv() {
 jubatus::server::framework::mixer::mixer* kvs_serv::get_mixer() const {
 }
 
-pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
+jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
 }
 
 std::string kvs_serv::get_config() const {

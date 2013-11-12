@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-375-g07d06b7/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-412-g37c57d9/develop
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -19,15 +19,17 @@ int run_proxy(int argc, char* argv[]) {
   try {
     jubatus::server::framework::proxy k(
         jubatus::server::framework::proxy_argv(argc, argv, "kvs"));
-    k.register_async_cht<2, bool, std::string>("put", pfi::lang::function<bool(
-        bool, bool)>(&jubatus::server::framework::all_and));
-    k.register_async_cht<2, std::string>("get", pfi::lang::function<std::string(
-        std::string, std::string)>(
-        &jubatus::server::framework::pass<std::string>));
-    k.register_async_cht<2, bool>("del", pfi::lang::function<bool(bool, bool)>(
+    k.register_async_cht<2, bool, std::string>("put",
+        jubatus::util::lang::function<bool(bool, bool)>(
         &jubatus::server::framework::all_and));
-    k.register_async_broadcast<bool>("clear", pfi::lang::function<bool(bool,
-        bool)>(&jubatus::server::framework::all_and));
+    k.register_async_cht<2, std::string>("get",
+        jubatus::util::lang::function<std::string(std::string, std::string)>(
+        &jubatus::server::framework::pass<std::string>));
+    k.register_async_cht<2, bool>("del", jubatus::util::lang::function<bool(
+        bool, bool)>(&jubatus::server::framework::all_and));
+    k.register_async_broadcast<bool>("clear",
+        jubatus::util::lang::function<bool(bool, bool)>(
+        &jubatus::server::framework::all_and));
     return k.run();
   } catch (const jubatus::core::common::exception::jubatus_exception& e) {
     LOG(FATAL) << e.diagnostic_information(true);

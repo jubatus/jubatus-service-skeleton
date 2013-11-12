@@ -1,6 +1,5 @@
-// This file is auto-generated from kvs.idl
-
 #include "kvs_serv.hpp"
+
 #include <jubatus/server/framework/mixer/mixer_factory.hpp>
 #include <glog/logging.h>
 
@@ -27,7 +26,7 @@ struct kvs_serv_config {
 
 kvs_serv::kvs_serv(
   const jubatus::server::framework::server_argv& a,
-  const pfi::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
+  const jubatus::util::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
     : jubatus::server::framework::server_base(a) {
   // somemixable* mi = new somemixable;
   // somemixable_.set_model(mi);
@@ -48,8 +47,12 @@ jubatus::server::framework::mixer::mixer* kvs_serv::get_mixer() const {
   return mixer_.get();
 }
 
-pfi::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
+jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
   return mixable_holder_;
+}
+
+std::string kvs_serv::get_config() const {
+  return config_;
 }
 
 void kvs_serv::get_status(status_t& status) const {
@@ -58,17 +61,9 @@ void kvs_serv::get_status(status_t& status) const {
   status.insert(std::make_pair("size", ss.str()));
 }
 
-std::string kvs_serv::get_config() const {
-  return config_;
-}
-
-uint64_t kvs_serv::user_data_version() const {
-  return 1u;
-}
-
 void kvs_serv::set_config(const std::string& config) {
   core::common::jsonconfig::config config_root(
-      pfi::lang::lexical_cast<pfi::text::json::json>(config));
+      jubatus::util::lang::lexical_cast<jubatus::util::text::json::json>(config));
   kvs_serv_config conf =
     core::common::jsonconfig::config_cast_check<kvs_serv_config>(config_root);
   config_ = config;
@@ -102,6 +97,10 @@ bool kvs_serv::del(const std::string& key) {
 bool kvs_serv::clear() {
   data_.clear();
   return true;
+}
+
+uint64_t kvs_serv::user_data_version() const {
+  return 1u;
 }
 
 }  // namespace server
