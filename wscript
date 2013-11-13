@@ -29,14 +29,12 @@ def configure(conf):
 
   conf.check_cfg(package = 'jubatus', args = '--cflags --libs')
   conf.check_cfg(package = 'jubatus-client', args = '--cflags --libs')
-  conf.check_cxx(lib="jubatus_util_concurrent")
-  conf.check_cxx(lib="jubatus_util_text")
 
 def build(bld):
   bld.program(
     source = [name+'_serv.cpp', name+'_impl.cpp'],
     target = name,
-    use = ['JUBATUS', 'JUBATUS_UTIL_CONCURRENT', 'JUBATUS_UTIL_TEXT'],
+    use = ['JUBATUS'],
     )
 
   bld.program(
