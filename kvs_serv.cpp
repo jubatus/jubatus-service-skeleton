@@ -55,6 +55,10 @@ std::string kvs_serv::get_config() const {
   return config_;
 }
 
+uint64_t kvs_serv::user_data_version() const {
+  return 1u;
+}
+
 void kvs_serv::get_status(status_t& status) const {
   std::stringstream ss;
   ss << data_.size();
@@ -97,10 +101,6 @@ bool kvs_serv::del(const std::string& key) {
 bool kvs_serv::clear() {
   data_.clear();
   return true;
-}
-
-uint64_t kvs_serv::user_data_version() const {
-  return 1u;
 }
 
 }  // namespace server

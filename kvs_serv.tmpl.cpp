@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-412-g37c57d9/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-418-gd2d5f04/develop
 
 #include "kvs_serv.hpp"
 
@@ -24,6 +24,9 @@ jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_se
 }
 
 std::string kvs_serv::get_config() const {
+}
+
+uint64_t kvs_serv::user_data_version() const {
 }
 
 void kvs_serv::get_status(status_t& status) const {

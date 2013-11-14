@@ -17,10 +17,10 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
 
   virtual jubatus::server::framework::mixer::mixer* get_mixer() const;
   jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
-  void get_status(status_t& status) const;
   std::string get_config() const;
-  void set_config(const std::string& config);
   uint64_t user_data_version() const;
+  void get_status(status_t& status) const;
+  void set_config(const std::string& config);
 
   bool put(const std::string& key, const std::string& value);
   std::string get(const std::string& key) const;

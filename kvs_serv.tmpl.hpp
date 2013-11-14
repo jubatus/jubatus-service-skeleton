@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-412-g37c57d9/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-418-gd2d5f04/develop
 
 #ifndef KVS_SERV_TMPL_HPP_
 #define KVS_SERV_TMPL_HPP_
@@ -20,6 +20,7 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
   virtual jubatus::server::framework::mixer::mixer* get_mixer() const;
   jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
   std::string get_config() const;
+  uint64_t user_data_version() const;
   void get_status(status_t& status) const;
   void set_config(const std::string& config);
 
