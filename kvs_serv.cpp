@@ -18,8 +18,8 @@ struct kvs_serv_config {
   template <typename Ar>
   void serialize(Ar& ar) {
     ar
-        & MEMBER(param1)
-        & MEMBER(param2);
+        & JUBA_MEMBER(param1)
+        & JUBA_MEMBER(param2);
   }
 };
 }
