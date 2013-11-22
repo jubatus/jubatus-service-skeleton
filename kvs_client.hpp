@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-418-gd2d5f04/master
 // *** DO NOT EDIT ***
 
 #ifndef KVS_CLIENT_HPP_
@@ -7,62 +7,39 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <utility>
-#include <jubatus/msgpack/rpc/client.h>
+#include <jubatus/client/common/client.hpp>
+#include <jubatus/client/common/datum.hpp>
 #include "kvs_types.hpp"
 
 namespace jubatus {
 namespace client {
 
-class kvs {
+class kvs : public jubatus::client::common::client {
  public:
-  kvs(const std::string& host, uint64_t port, double timeout_sec)
-      : c_(host, port) {
-    c_.set_timeout(timeout_sec);
+  kvs(const std::string& host, uint64_t port, const std::string& name,
+      unsigned int timeout_sec)
+      : client(host, port, name, timeout_sec) {
   }
 
-  bool put(std::string name, std::string key, std::string value) {
-    msgpack::rpc::future f = c_.call("put", name, key, value);
+  bool put(const std::string& key, const std::string& value) {
+    msgpack::rpc::future f = c_.call("put", name_, key, value);
     return f.get<bool>();
   }
 
-  std::string get(std::string name, std::string key) {
-    msgpack::rpc::future f = c_.call("get", name, key);
+  std::string get(const std::string& key) {
+    msgpack::rpc::future f = c_.call("get", name_, key);
     return f.get<std::string>();
   }
 
-  bool del(std::string name, std::string key) {
-    msgpack::rpc::future f = c_.call("del", name, key);
+  bool del(const std::string& key) {
+    msgpack::rpc::future f = c_.call("del", name_, key);
     return f.get<bool>();
   }
 
-  bool clear(std::string name) {
-    msgpack::rpc::future f = c_.call("clear", name);
+  bool clear() {
+    msgpack::rpc::future f = c_.call("clear", name_);
     return f.get<bool>();
   }
-
-  std::map<std::string, std::map<std::string, std::string> > get_status(
-      std::string name) {
-    msgpack::rpc::future f = c_.call("get_status", name);
-    return f.get<std::map<std::string, std::map<std::string, std::string> > >();
-  }
-
-  bool save(std::string name, std::string id) {
-    msgpack::rpc::future f = c_.call("save", name, id);
-    return f.get<bool>();
-  }
-
-  bool load(std::string name, std::string id) {
-    msgpack::rpc::future f = c_.call("load", name, id);
-    return f.get<bool>();
-  }
-
-  msgpack::rpc::client& get_client() {
-    return c_;
-  }
-
- private:
-  msgpack::rpc::client c_;
 };
 
 }  // namespace client

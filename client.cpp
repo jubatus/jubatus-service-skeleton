@@ -10,21 +10,21 @@ const int    PORT = 9199;
 const string NAME = "";
 
 int main(int argc, char* argv[]){
-    jubatus::client::kvs c(HOST, PORT, 5);
+    jubatus::client::kvs c(HOST, PORT, NAME, 5);
 
-    cout << c.put(NAME, "apple",  "pomme") << endl;
-    cout << c.put(NAME, "orange", "orangé") << endl;
-    cout << c.put(NAME, "banana", "banane") << endl;
-    cout << c.put(NAME, "strawberry", "fraise") << endl;
-    cout << c.put(NAME, "unknown", "???") << endl;
-    cout << c.del(NAME, "unknown") << endl;
+    cout << c.put("apple",  "pomme") << endl;
+    cout << c.put("orange", "orangé") << endl;
+    cout << c.put("banana", "banane") << endl;
+    cout << c.put("strawberry", "fraise") << endl;
+    cout << c.put("unknown", "???") << endl;
+    cout << c.del("unknown") << endl;
 
     try {
-        cout << c.get(NAME, "apple") << endl;
-        cout << c.get(NAME, "orange") << endl;
-        cout << c.get(NAME, "banana") << endl;
-        cout << c.get(NAME, "strawberry") << endl;
-        cout << c.get(NAME, "unknown") << endl;
+        cout << c.get("apple") << endl;
+        cout << c.get("orange") << endl;
+        cout << c.get("banana") << endl;
+        cout << c.get("strawberry") << endl;
+        cout << c.get("unknown") << endl;
     } catch (const runtime_error& e) {
         cout << "Exception: " << e.what() << endl;
     }
