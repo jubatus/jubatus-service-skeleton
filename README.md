@@ -6,7 +6,7 @@ This is an implementation of a simple key-value store that uses Jubatus framewor
 Requirements
 ------------
 
-+ Jubatus 0.5.0+ (development headers required)
++ Jubatus 0.5.1+ (development headers required)
 
 Build
 -----
