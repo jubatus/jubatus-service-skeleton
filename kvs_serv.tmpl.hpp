@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-418-gd2d5f04/master
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-472-g0c36f76/develop
 
 #ifndef KVS_SERV_TMPL_HPP_
 #define KVS_SERV_TMPL_HPP_

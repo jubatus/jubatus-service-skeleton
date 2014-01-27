@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-418-gd2d5f04/master
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-472-g0c36f76/develop
 // *** DO NOT EDIT ***
 
 #ifndef KVS_TYPES_HPP_

@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-418-gd2d5f04/master
+// This file is auto-generated from kvs.idl with jenerator version 0.4.5-472-g0c36f76/develop
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -70,7 +70,7 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
   }
 
   bool save(const std::string& id) {
-    JWLOCK_(p_);
+    JRLOCK_(p_);
     return get_p()->save(id);
   }
 
