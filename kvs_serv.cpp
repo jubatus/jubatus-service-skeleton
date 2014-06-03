@@ -28,14 +28,7 @@ kvs_serv::kvs_serv(
   const jubatus::server::framework::server_argv& a,
   const jubatus::util::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
     : jubatus::server::framework::server_base(a) {
-  // somemixable* mi = new somemixable;
-  // somemixable_.set_model(mi);
-  // get_mixable_holder()->register_mixable(mi);
-
-  mixer_.reset(server::framework::mixer::create_mixer(a, zk));
-
-  mixable_holder_.reset(new core::framework::mixable_holder());
-  mixer_->set_mixable_holder(mixable_holder_);
+  mixer_.reset(server::framework::mixer::create_mixer(a, zk, rw_mutex()));
 
   data_ = kvs_map_t();
 }
@@ -47,8 +40,9 @@ jubatus::server::framework::mixer::mixer* kvs_serv::get_mixer() const {
   return mixer_.get();
 }
 
-jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> kvs_serv::get_mixable_holder() const {
-  return mixable_holder_;
+jubatus::core::driver::driver_base* kvs_serv::get_driver() const {
+  // TODO: return pointer of driver_base
+  return NULL;
 }
 
 std::string kvs_serv::get_config() const {

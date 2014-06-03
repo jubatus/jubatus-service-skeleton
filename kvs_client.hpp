@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.4.5-472-g0c36f76/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.5.2-45-gc4cfc98/develop
 // *** DO NOT EDIT ***
 
 #ifndef KVS_CLIENT_HPP_
@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include <jubatus/client/common/client.hpp>
-#include <jubatus/client/common/datum.hpp>
+#include <jubatus/core/fv_converter/datum.hpp>
 #include "kvs_types.hpp"
 
 namespace jubatus {
