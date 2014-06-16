@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <jubatus/client/common/client.hpp>
+#include <jubatus/client/common/datum.hpp>
 #include "kvs_types.hpp"
 
 namespace jubatus {
