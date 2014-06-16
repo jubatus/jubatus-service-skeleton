@@ -16,8 +16,8 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
   virtual ~kvs_serv();  // do not change
 
   virtual jubatus::server::framework::mixer::mixer* get_mixer() const;
-  jubatus::util::lang::shared_ptr<jubatus::core::framework::mixable_holder> get_mixable_holder() const;
   std::string get_config() const;
+  jubatus::core::driver::driver_base* get_driver() const;
   uint64_t user_data_version() const;
   void get_status(status_t& status) const;
   void set_config(const std::string& config);
@@ -30,7 +30,6 @@ class kvs_serv : public jubatus::server::framework::server_base {  // do not cha
  private:
   // add user data here like: jubatus::util::lang::shared_ptr<some_type> some_;
   jubatus::util::lang::scoped_ptr<framework::mixer::mixer> mixer_;
-  jubatus::util::lang::shared_ptr<core::framework::mixable_holder> mixable_holder_;
 
   typedef std::map<std::string,std::string> kvs_map_t;
   kvs_map_t data_;

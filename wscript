@@ -28,19 +28,20 @@ def configure(conf):
   conf.load('compiler_cxx')
 
   conf.check_cfg(package = 'jubatus', args = '--cflags --libs')
+  conf.check_cfg(package = 'jubatus_core', args = '--cflags --libs')
   conf.check_cfg(package = 'jubatus-client', args = '--cflags --libs')
 
 def build(bld):
   bld.program(
     source = [name+'_serv.cpp', name+'_impl.cpp'],
     target = name,
-    use = ['JUBATUS'],
+    use = ['JUBATUS', 'JUBATUS_CORE'],
     )
 
   bld.program(
     source = name+'_proxy.cpp',
     target = name+'_proxy',
-    use = ['JUBATUS'],
+    use = ['JUBATUS', 'JUBATUS_CORE'],
     )
 
   bld.program(
