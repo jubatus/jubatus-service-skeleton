@@ -1,7 +1,7 @@
 #include "kvs_serv.hpp"
 
+#include <jubatus/server/common/logger/logger.hpp>
 #include <jubatus/server/framework/mixer/mixer_factory.hpp>
-#include <glog/logging.h>
 
 namespace jubatus {
 namespace server {
