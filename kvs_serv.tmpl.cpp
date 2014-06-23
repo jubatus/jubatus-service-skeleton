@@ -1,19 +1,35 @@
-// This file is auto-generated from kvs.idl
-// *** DO NOT EDIT ***
+// This file is auto-generated from kvs.idl with jenerator version 0.5.4-224-g49229fa/develop
 
 #include "kvs_serv.hpp"
 
 namespace jubatus {
 namespace server {
 
-kvs_serv::kvs_serv(const jubatus::framework::server_argv& a)
-    : jubatus::framework::jubatus_serv(a) {
-  // somemixable* mi = new somemixable;
-  // somemixable_.set_model(mi);
-  // register_mixable(mi);
+kvs_serv::kvs_serv(
+  const jubatus::server::framework::server_argv& a,
+  const jubatus::util::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
+    : jubatus::server::framework::server_base(a) {
 }
 
 kvs_serv::~kvs_serv() {
+}
+
+jubatus::server::framework::mixer::mixer* kvs_serv::get_mixer() const {
+}
+
+jubatus::core::driver::driver_base* kvs_serv::get_driver() const {
+}
+
+std::string kvs_serv::get_config() const {
+}
+
+uint64_t kvs_serv::user_data_version() const {
+}
+
+void kvs_serv::get_status(status_t& status) const {
+}
+
+void kvs_serv::set_config(const std::string& config) {
 }
 
 bool kvs_serv::put(const std::string& key, const std::string& value) {
@@ -26,16 +42,6 @@ bool kvs_serv::del(const std::string& key) {
 }
 
 bool kvs_serv::clear() {
-}
-
-std::map<std::string, std::map<std::string, std::string> > kvs_serv::get_status(
-    ) const {
-}
-
-bool kvs_serv::save(const std::string& id) {
-}
-
-bool kvs_serv::load(const std::string& id) {
 }
 
 }  // namespace server
