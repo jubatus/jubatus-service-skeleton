@@ -28,7 +28,8 @@ kvs_serv::kvs_serv(
   const jubatus::server::framework::server_argv& a,
   const jubatus::util::lang::shared_ptr<jubatus::server::common::lock_service>& zk)
     : jubatus::server::framework::server_base(a) {
-  mixer_.reset(server::framework::mixer::create_mixer(a, zk, rw_mutex()));
+  mixer_.reset(server::framework::mixer::create_mixer(
+      a, zk, rw_mutex(), user_data_version()));
 
   data_ = kvs_map_t();
 }
