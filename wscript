@@ -24,12 +24,13 @@ def clean_generated(ctx):
     ctx.path.make_node(f).delete()
 
 def configure(conf):
-  conf.env.CXXFLAGS += ['-O2', '-Wall', '-g', '-pipe']
+  conf.env.CXXFLAGS += ['-O2', '-Wall', '-g', '-pipe', '-pthread']
   conf.load('compiler_cxx')
 
   conf.check_cfg(package = 'jubatus', args = '--cflags --libs')
   conf.check_cfg(package = 'jubatus_core', args = '--cflags --libs')
   conf.check_cfg(package = 'jubatus-client', args = '--cflags --libs')
+  conf.check_cxx(lib = 'pthread')
 
 def build(bld):
   bld.program(
@@ -41,7 +42,7 @@ def build(bld):
   bld.program(
     source = name+'_proxy.cpp',
     target = name+'_proxy',
-    use = ['JUBATUS', 'JUBATUS_CORE'],
+    use = ['JUBATUS', 'JUBATUS_CORE', 'PTHREAD'],
     )
 
   bld.program(
