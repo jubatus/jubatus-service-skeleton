@@ -24,7 +24,7 @@ $ build/kvs --configpath kvs_config.json &
 $ build/client
 ```
 
-Generating Server/Keeper/Client from IDL
+Generating Server/Proxy/Client from IDL
 ----------------------------------------
 
 For your convenience, `generate` target is already defined in `wscript` (note that `jenerator` must be in `PATH`).
