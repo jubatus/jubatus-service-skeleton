@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.6.4-60-gdff9eb0/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.6.4-146-g79178f8/develop
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -33,8 +33,8 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
 
     rpc_server::add<std::string(std::string)>("get_config",
         jubatus::util::lang::bind(&kvs_impl::get_config, this));
-    rpc_server::add<bool(std::string, std::string)>("save",
-        jubatus::util::lang::bind(&kvs_impl::save, this,
+    rpc_server::add<std::map<std::string, std::string>(std::string,
+        std::string)>("save", jubatus::util::lang::bind(&kvs_impl::save, this,
         jubatus::util::lang::_2));
     rpc_server::add<bool(std::string, std::string)>("load",
         jubatus::util::lang::bind(&kvs_impl::load, this,
@@ -69,7 +69,7 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
     return get_p()->get_config();
   }
 
-  bool save(const std::string& id) {
+  std::map<std::string, std::string> save(const std::string& id) {
     JRLOCK_(p_);
     return get_p()->save(id);
   }
