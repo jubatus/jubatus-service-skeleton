@@ -1,13 +1,15 @@
+message entry {
+  0: string key
+  1: int value
+}
+
 service kvs {
-  #@cht(2) #@update #@all_and
-  bool put(0: string key, 1: string value)
+  #@cht(1) #@update #@pass
+  bool put(0: string key, 1: int value)
 
-  #@cht(2) #@analysis #@pass
-  string get(0: string key)
+  #@cht(1) #@analysis #@pass
+  entry get(0: string key)
 
-  #@cht(2) #@update #@all_and
-  bool del(0: string key)
-
-  #@broadcast #@update #@all_and
-  bool clear()
+  #@random #@analysis #@pass
+  float get_average()
 }

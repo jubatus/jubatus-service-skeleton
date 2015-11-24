@@ -34,7 +34,7 @@ def configure(conf):
 
 def build(bld):
   bld.program(
-    source = [name+'_serv.cpp', name+'_impl.cpp'],
+    source = [name+'_serv.cpp', name+'_impl.cpp', name+'_driver.cpp', name+'_algorithm.cpp'],
     target = name,
     use = ['JUBATUS', 'JUBATUS_CORE'],
     )

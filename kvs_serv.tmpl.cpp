@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.6.4-146-g79178f8/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.8.1-11-g6aaff17/master
 
 #include "kvs_serv.hpp"
 
@@ -32,16 +32,13 @@ void kvs_serv::get_status(status_t& status) const {
 void kvs_serv::set_config(const std::string& config) {
 }
 
-bool kvs_serv::put(const std::string& key, const std::string& value) {
+bool kvs_serv::put(const std::string& key, int32_t value) {
 }
 
-std::string kvs_serv::get(const std::string& key) const {
+entry kvs_serv::get(const std::string& key) const {
 }
 
-bool kvs_serv::del(const std::string& key) {
-}
-
-bool kvs_serv::clear() {
+float kvs_serv::get_average() const {
 }
 
 }  // namespace server

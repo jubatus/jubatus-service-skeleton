@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.6.4-146-g79178f8/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.8.1-11-g6aaff17/master
 // *** DO NOT EDIT ***
 
 #ifndef KVS_CLIENT_HPP_
@@ -21,24 +21,19 @@ class kvs : public jubatus::client::common::client {
       : client(host, port, name, timeout_sec) {
   }
 
-  bool put(const std::string& key, const std::string& value) {
+  bool put(const std::string& key, int32_t value) {
     msgpack::rpc::future f = c_.call("put", name_, key, value);
     return f.get<bool>();
   }
 
-  std::string get(const std::string& key) {
+  entry get(const std::string& key) {
     msgpack::rpc::future f = c_.call("get", name_, key);
-    return f.get<std::string>();
+    return f.get<entry>();
   }
 
-  bool del(const std::string& key) {
-    msgpack::rpc::future f = c_.call("del", name_, key);
-    return f.get<bool>();
-  }
-
-  bool clear() {
-    msgpack::rpc::future f = c_.call("clear", name_);
-    return f.get<bool>();
+  float get_average() {
+    msgpack::rpc::future f = c_.call("get_average", name_);
+    return f.get<float>();
   }
 };
 

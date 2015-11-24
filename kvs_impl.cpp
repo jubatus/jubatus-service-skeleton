@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.6.4-146-g79178f8/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.8.1-11-g6aaff17/master
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -19,17 +19,14 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
     rpc_server(a.timeout),
     p_(new jubatus::server::framework::server_helper<kvs_serv>(a, true)) {
 
-    rpc_server::add<bool(std::string, std::string, std::string)>("put",
+    rpc_server::add<bool(std::string, std::string, int32_t)>("put",
         jubatus::util::lang::bind(&kvs_impl::put, this, jubatus::util::lang::_2,
         jubatus::util::lang::_3));
-    rpc_server::add<std::string(std::string, std::string)>("get",
+    rpc_server::add<entry(std::string, std::string)>("get",
         jubatus::util::lang::bind(&kvs_impl::get, this,
         jubatus::util::lang::_2));
-    rpc_server::add<bool(std::string, std::string)>("del",
-        jubatus::util::lang::bind(&kvs_impl::del, this,
-        jubatus::util::lang::_2));
-    rpc_server::add<bool(std::string)>("clear", jubatus::util::lang::bind(
-        &kvs_impl::clear, this));
+    rpc_server::add<float(std::string)>("get_average",
+        jubatus::util::lang::bind(&kvs_impl::get_average, this));
 
     rpc_server::add<std::string(std::string)>("get_config",
         jubatus::util::lang::bind(&kvs_impl::get_config, this));
@@ -44,24 +41,19 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
         &kvs_impl::get_status, this));
   }
 
-  bool put(const std::string& key, const std::string& value) {
+  bool put(const std::string& key, int32_t value) {
     JWLOCK_(p_);
     return get_p()->put(key, value);
   }
 
-  std::string get(const std::string& key) {
+  entry get(const std::string& key) {
     JRLOCK_(p_);
     return get_p()->get(key);
   }
 
-  bool del(const std::string& key) {
-    JWLOCK_(p_);
-    return get_p()->del(key);
-  }
-
-  bool clear() {
-    JWLOCK_(p_);
-    return get_p()->clear();
+  float get_average() {
+    JRLOCK_(p_);
+    return get_p()->get_average();
   }
 
   std::string get_config() {

@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.6.4-146-g79178f8/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.8.1-11-g6aaff17/master
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -18,17 +18,12 @@ int run_proxy(int argc, char* argv[]) {
   try {
     jubatus::server::framework::proxy k(
         jubatus::server::framework::proxy_argv(argc, argv, "kvs"));
-    k.register_async_cht<2, bool, std::string>("put",
+    k.register_async_cht<1, bool, int32_t>("put",
         jubatus::util::lang::function<bool(bool, bool)>(
-        &jubatus::server::framework::all_and));
-    k.register_async_cht<2, std::string>("get",
-        jubatus::util::lang::function<std::string(std::string, std::string)>(
-        &jubatus::server::framework::pass<std::string>));
-    k.register_async_cht<2, bool>("del", jubatus::util::lang::function<bool(
-        bool, bool)>(&jubatus::server::framework::all_and));
-    k.register_async_broadcast<bool>("clear",
-        jubatus::util::lang::function<bool(bool, bool)>(
-        &jubatus::server::framework::all_and));
+        &jubatus::server::framework::pass<bool>));
+    k.register_async_cht<1, entry>("get", jubatus::util::lang::function<entry(
+        entry, entry)>(&jubatus::server::framework::pass<entry>));
+    k.register_async_random<float>("get_average");
     return k.run();
   } catch (const jubatus::core::common::exception::jubatus_exception& e) {
     LOG(FATAL) << "exception in proxy main thread: "
