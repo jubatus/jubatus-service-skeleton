@@ -9,7 +9,7 @@ def options(opt):
 
 def generate(ctx):
   call(['jenerator', '-l', 'server', '-o', '.', '-n', 'jubatus', '-t', name + '.idl'])
-  call(['jenerator', '-l', 'cpp', '-o', '.', '-n', 'jubatus', '-t', name + '.idl'])
+  call(['jenerator', '-l', 'cpp', '-o', '.', '-n', 'jubatus', name + '.idl'])
 
 def clean_generated(ctx):
   generated = [
