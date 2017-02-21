@@ -1,4 +1,4 @@
-// This file is auto-generated from kvs.idl with jenerator version 0.6.4-146-g79178f8/develop
+// This file is auto-generated from kvs.idl with jenerator version 0.9.4-42-g70f7539/develop
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -96,6 +96,7 @@ class kvs_impl : public jubatus::server::common::mprpc::rpc_server {
 
 int main(int argc, char* argv[]) {
   return
-    jubatus::server::framework::run_server<jubatus::server::kvs_impl>
+    jubatus::server::framework::run_server<jubatus::server::kvs_impl,
+        jubatus::server::kvs_serv>
       (argc, argv, "kvs");
 }
